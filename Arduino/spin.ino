@@ -1,11 +1,12 @@
 /*
-  Turntable
+  Spin
   Default sketch for controlling the Spin turtntable using the Spin iOS app
   Also includes debugging functionality to use with the Processing Sketch
-  Find additional documentation at
-  Code Modified from BILDR: http://bildr.org/2011/06/easydriver/
+  Find additional documentation at spin.media.mit.edu/build
+  Stepper Motor Code Modified from BILDR: http://bildr.org/2011/06/easydriver/
   
   Author: Tiffany Tseng  
+  Last Updated: 07/06/2015
 */
 
 #include <Stepper.h>
@@ -26,6 +27,7 @@
 SoftModem modem;
 
 boolean rotating = false;
+boolean cancelled = false;
 int numRotations = 15;
 int currentRotation = 0;
 char val;
@@ -52,38 +54,51 @@ void loop(){
     digitalWrite(LED_PIN_1, HIGH);
   }
 
-  // RECEIVED SIGNAL FROM IPHONE 
   if(modem.available ()) {
+    // RECEIVED SIGNAL FROM IPHONE 
     int input = modem.read ();
 
     if(input == 253){
       // begin spin - flash LEDs
+      Serial.println("start");
       flashLEDsOnce();
       currentRotation = 0;
       rotating = true;
-    }else if(input == 255){
-      // rotate once
-      singleRotation();
+      cancelled = false;
+      delay(1000);
     }else if(input==251){
+      Serial.println("stop");
       // stop arduino
       rotating = false;
+      cancelled = true;
       currentRotation = 0;
-      flashLEDsOnce();
     }else if(input == 250){
+      Serial.println("done");
       // arduino is done
       rotating = false;
+      cancelled = true;
       currentRotation = 0;
       flashLEDs();
     }
   }
   
+  if(rotating && !cancelled && currentRotation < numRotations){
+    Serial.println(currentRotation+1);
+    singleRotation();
+    currentRotation++;
+  }else{
+    rotating = false;
+    cancelled = true;
+  }
+  
   if(Serial.available()){
+    // SIGNAL RECEIVED FROM SERIAL MONITOR / PROCESSING
       val = Serial.read();
       // read serial character from the serial monitor and send to arduino  
       modem.write(val);
       // blink LED to show that signal was sent to iPhone
       ledsOn();
-      delay(100);
+      delay(2);
       ledsOff();
 
       // KEYBOARD INPUT FOR DEBUGGING THROUGH PROCESSING
@@ -126,16 +141,20 @@ void loop(){
 void singleRotation(){
   rotating = true;
   ledsOn();
+  Serial.println("motor turning");
   rotateDeg(-rotAmt, motor_speed);
+  Serial.println("motor stopped");
   ledsOff();
   takePhoto();
-  currentRotation++;
 }
 
 void takePhoto(){
   // snap a photo
   modem.write(rotAmt);
-  delay(2000);
+  Serial.println("start delay");
+  // time it takes to capture photo and add imageview to app
+  delay(1800);
+  Serial.println("end delay");
 }
 
 void rotate(int steps, float speed){ 
