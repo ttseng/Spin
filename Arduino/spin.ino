@@ -6,7 +6,7 @@
   Stepper Motor Code Modified from BILDR: http://bildr.org/2011/06/easydriver/
   
   Author: Tiffany Tseng  
-  Last Updated: 07/06/2015
+  Last Updated: 07/17/2015
 */
 
 #include <Stepper.h>
@@ -28,7 +28,7 @@ SoftModem modem;
 
 boolean rotating = false;
 boolean cancelled = false;
-int numRotations = 15;
+int numRotations = 15;// should be 15
 int currentRotation = 0;
 char val;
 float rotAmt = 240;
@@ -61,6 +61,7 @@ void loop(){
     if(input == 253){
       // begin spin - flash LEDs
       Serial.println("start");
+      modem.write(0xFC); // send confirmation signal to app
       flashLEDsOnce();
       currentRotation = 0;
       rotating = true;
@@ -72,6 +73,7 @@ void loop(){
       rotating = false;
       cancelled = true;
       currentRotation = 0;
+      modem.write(0xFE);
     }else if(input == 250){
       Serial.println("done");
       // arduino is done
@@ -79,6 +81,9 @@ void loop(){
       cancelled = true;
       currentRotation = 0;
       flashLEDs();
+    }else if(input == 234){
+      // setup start received
+      modem.write(0xEC);
     }
   }
   
@@ -95,7 +100,6 @@ void loop(){
     // SIGNAL RECEIVED FROM SERIAL MONITOR / PROCESSING
       val = Serial.read();
       // read serial character from the serial monitor and send to arduino  
-      modem.write(val);
       // blink LED to show that signal was sent to iPhone
       ledsOn();
       delay(2);
@@ -150,7 +154,6 @@ void singleRotation(){
 
 void takePhoto(){
   // snap a photo
-  modem.write(rotAmt);
   Serial.println("start delay");
   // time it takes to capture photo and add imageview to app
   delay(1800);
