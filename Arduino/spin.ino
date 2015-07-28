@@ -6,7 +6,9 @@
   Stepper Motor Code Modified from BILDR: http://bildr.org/2011/06/easydriver/
   
   Author: Tiffany Tseng  
-  Last Updated: 07/17/2015
+  Last Updated: 07/27/2015
+  Added response for setup procedure (to authenticate users with turntables)
+  
 */
 
 #include <Stepper.h>
@@ -83,7 +85,10 @@ void loop(){
       flashLEDs();
     }else if(input == 234){
       // setup start received
+      flashLEDsOnce();
       modem.write(0xEC);
+      rotateDeg(-rotAmt/2, motor_speed);
+      rotateDeg(rotAmt/2, motor_speed);
     }
   }
   
@@ -156,7 +161,7 @@ void takePhoto(){
   // snap a photo
   Serial.println("start delay");
   // time it takes to capture photo and add imageview to app
-  delay(1800);
+  delay(1950);
   Serial.println("end delay");
 }
 
