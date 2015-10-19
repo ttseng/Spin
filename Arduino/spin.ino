@@ -6,8 +6,8 @@
   Stepper Motor Code Modified from BILDR: http://bildr.org/2011/06/easydriver/
   
   Author: Tiffany Tseng  
-  Last Updated: 07/27/2015
-  Added response for setup procedure (to authenticate users with turntables)
+  Last Updated: 10/19/2015
+  Changed motor_speed for faster spins
   
 */
 
@@ -34,7 +34,7 @@ int numRotations = 15;// should be 15
 int currentRotation = 0;
 char val;
 float rotAmt = 240;
-float motor_speed = 0.075;
+float motor_speed = 0.2;
 
 void setup() { 
   pinMode(DIR_PIN, OUTPUT); 
@@ -59,10 +59,11 @@ void loop(){
   if(modem.available ()) {
     // RECEIVED SIGNAL FROM IPHONE 
     int input = modem.read ();
+    Serial.print(input);
 
     if(input == 253){
       // begin spin - flash LEDs
-      Serial.println("start");
+      Serial.print(" start ");
       modem.write(0xFC); // send confirmation signal to app
       flashLEDsOnce();
       currentRotation = 0;
@@ -70,19 +71,12 @@ void loop(){
       cancelled = false;
       delay(1000);
     }else if(input==251){
-      Serial.println("stop");
       // stop arduino
       rotating = false;
       cancelled = true;
       currentRotation = 0;
+      Serial.print(" stop - writing stop signal");
       modem.write(0xFE);
-    }else if(input == 250){
-      Serial.println("done");
-      // arduino is done
-      rotating = false;
-      cancelled = true;
-      currentRotation = 0;
-      flashLEDs();
     }else if(input == 234){
       // setup start received
       flashLEDsOnce();
@@ -93,7 +87,7 @@ void loop(){
   }
   
   if(rotating && !cancelled && currentRotation < numRotations){
-    Serial.println(currentRotation+1);
+//    Serial.println(currentRotation+1);
     singleRotation();
     currentRotation++;
   }else{
@@ -150,19 +144,19 @@ void loop(){
 void singleRotation(){
   rotating = true;
   ledsOn();
-  Serial.println("motor turning");
+//  Serial.println("motor turning");
   rotateDeg(-rotAmt, motor_speed);
-  Serial.println("motor stopped");
+//  Serial.println("motor stopped");
   ledsOff();
   takePhoto();
 }
 
 void takePhoto(){
   // snap a photo
-  Serial.println("start delay");
+//  Serial.println("start delay");
   // time it takes to capture photo and add imageview to app
   delay(1950);
-  Serial.println("end delay");
+//  Serial.println("end delay");
 }
 
 void rotate(int steps, float speed){ 
