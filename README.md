@@ -8,7 +8,9 @@ This folder contains the SoftModem library needed for the spin.ino Arduino sketc
 
 ## CAD
 
-The CAD folder contains three subfolders: _3D Print_, _Laser Cut_, and _Solidworks_.  Building your own Spin turntable requires laser cutting parts in 3/16" and 1/8" acrylic, which can be found in the _Laser Cut_ folder in Illustrator, Corel Draw, and DXF formats.  Additionally, you'll need to 3D print a gear (motor_gear.STL), which can be found in the _3D print_ folder.  Optionally, you can 3D print your own iPhone dock (sized for an iPhone 4/4S or 5/5S), and the iPhone 6 Adapter sized for an iPhone 6/6S, both of which can be found in the 3D print folder.  If you're using an iPad, here's a simple LEGO stand you can build: http://spin.media.mit.edu/sets/731
+If you are building a turntable and have access to a laser cutter with a bed larger than 12", build the DEFAULT turntable.  If you have a smaller laser cutter that is 12" in a single dimension, build the Modified 12-inch turntable design.  Both designs have the same exact footprint (13"), but the modified 12-inch turntable has smaller laser cut parts and has an additional set of three 3D printed feet.
+
+Each contains three subfolders: _3D Print_, _Laser Cut_, and _Solidworks_.  Building your own Spin turntable requires laser cutting parts in 3/16" and 1/8" acrylic, which can be found in the _Laser Cut_ folder in Illustrator, Corel Draw, and DXF formats.  Additionally, you'll need to 3D print a gear (motor_gear.STL), which can be found in the _3D print_ folder.  Optionally, you can 3D print your own iPhone dock (sized for an iPhone 4/4S or 5/5S), and the iPhone 6 Adapter sized for an iPhone 6/6S, both of which can be found in the 3D print folder.  If you are building the modified turntable, you will also need to 3D print three feet.  If you're using an iPad, here's a simple LEGO stand you can build: http://spin.media.mit.edu/sets/731
 
 If you're interested in modifying any of the components in CAD, all of the files are located in the _Solidworks_ folder.
 
