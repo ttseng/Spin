@@ -1736,7 +1736,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="45.72" y="30.48" size="1.27" layer="26" rot="MR180"/>
 <attribute name="VALUE" x="39.116" y="29.21" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="R5" library="rcl" package="R1206" value="100" x="42.672" y="24.638" smashed="yes" rot="MR0">
+<element name="R5" library="rcl" package="R1206" value="1k" x="42.672" y="24.638" smashed="yes" rot="MR0">
 <attribute name="NAME" x="45.974" y="25.4" size="1.27" layer="26" rot="MR180"/>
 <attribute name="VALUE" x="39.37" y="24.13" size="1.27" layer="28" rot="MR0"/>
 </element>
@@ -1879,22 +1879,22 @@ design rules under a new name.</description>
 <wire x1="46.736" y1="19.939" x2="46.736" y2="27.432" width="0.4064" layer="16"/>
 <wire x1="46.736" y1="27.432" x2="41.25" y2="27.432" width="0.4064" layer="16"/>
 </signal>
-<signal name="N$4">
+<signal name="RED">
 <contactref element="EASY_DRIVER" pad="B1"/>
 <contactref element="STEPPER" pad="4"/>
 <wire x1="36.83" y1="34.29" x2="44.45" y2="34.29" width="0.4064" layer="16"/>
 </signal>
-<signal name="N$5">
+<signal name="GREEN">
 <contactref element="EASY_DRIVER" pad="B2"/>
 <contactref element="STEPPER" pad="3"/>
 <wire x1="36.83" y1="36.83" x2="44.45" y2="36.83" width="0.4064" layer="16"/>
 </signal>
-<signal name="N$6">
+<signal name="YELLOW">
 <contactref element="EASY_DRIVER" pad="A2"/>
 <contactref element="STEPPER" pad="2"/>
 <wire x1="36.83" y1="39.37" x2="44.45" y2="39.37" width="0.4064" layer="16"/>
 </signal>
-<signal name="N$7">
+<signal name="BLUE">
 <contactref element="EASY_DRIVER" pad="A1"/>
 <contactref element="STEPPER" pad="1"/>
 <wire x1="36.83" y1="41.91" x2="44.45" y2="41.91" width="0.4064" layer="16"/>

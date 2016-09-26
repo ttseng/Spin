@@ -5683,7 +5683,7 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="R3" library="rcl" deviceset="R-US_" device="R1206" value="10k"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R4" library="rcl" deviceset="R-US_" device="R1206" value="1k"/>
-<part name="R5" library="rcl" deviceset="R-US_" device="R1206" value="100"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="R1206" value="1k"/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="EASY_DRIVER" library="EasyDriver" deviceset="EASYDRIVER_V44" device=""/>
@@ -5865,40 +5865,44 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="20.32" y1="109.22" x2="7.62" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="RED" class="0">
 <segment>
 <pinref part="EASY_DRIVER" gate="G$1" pin="B1"/>
 <wire x1="83.82" y1="38.1" x2="86.36" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="STEPPER" gate="G$1" pin="4"/>
 <wire x1="86.36" y1="38.1" x2="91.44" y2="38.1" width="0.1524" layer="91"/>
 <junction x="86.36" y="38.1"/>
+<label x="86.36" y="38.1" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$5" class="0">
+<net name="GREEN" class="0">
 <segment>
 <pinref part="EASY_DRIVER" gate="G$1" pin="B2"/>
 <wire x1="83.82" y1="35.56" x2="86.36" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="STEPPER" gate="G$1" pin="3"/>
 <wire x1="86.36" y1="35.56" x2="91.44" y2="35.56" width="0.1524" layer="91"/>
 <junction x="86.36" y="35.56"/>
+<label x="86.36" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="YELLOW" class="0">
 <segment>
 <pinref part="EASY_DRIVER" gate="G$1" pin="A2"/>
 <wire x1="83.82" y1="33.02" x2="86.36" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="STEPPER" gate="G$1" pin="2"/>
 <wire x1="86.36" y1="33.02" x2="91.44" y2="33.02" width="0.1524" layer="91"/>
 <junction x="86.36" y="33.02"/>
+<label x="86.36" y="33.02" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$7" class="0">
+<net name="BLUE" class="0">
 <segment>
 <pinref part="EASY_DRIVER" gate="G$1" pin="A1"/>
 <wire x1="83.82" y1="30.48" x2="86.36" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="STEPPER" gate="G$1" pin="1"/>
 <wire x1="86.36" y1="30.48" x2="91.44" y2="30.48" width="0.1524" layer="91"/>
 <junction x="86.36" y="30.48"/>
+<label x="86.36" y="30.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="D9" class="0">
